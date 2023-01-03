@@ -1,0 +1,35 @@
+GET http://localhost:8000/api/add/10/20/
+Content-Type: application/json
+
+{
+  "num1": 500,
+  "num2": 2100
+}
+###
+
+GET http://localhost:8000/api/sub/20/30/
+Content-Type: application/json
+
+{
+  "num1": 44,
+  "num2": 4
+}
+###
+
+GET http://localhost:8000/api/mul/10/20/
+Content-Type: application/json
+
+{
+  "num1": 4,
+  "num2": 4
+}
+###
+
+GET http://localhost:8000/api/div/20/10/
+Content-Type: application/json
+
+{
+  "num1": 4,
+  "num2": 4
+}
+###
