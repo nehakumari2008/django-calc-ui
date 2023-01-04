@@ -8,6 +8,7 @@ urlpatterns = [
     path('sub/', views.sub, name='viewSub'),
     path('mul/', views.mul, name='viewMul'),
     path('div/', views.div, name='viewDiv'),
+    path('history/', views.history_view, name='history'),
     # path('add', views.addition, name='add'),
     # path('sub', views.subtraction, name='sub'),
     # path('mul', views.multiplication, name='mul'),

@@ -1,4 +1,4 @@
-GET http://localhost:8000/api/add/10/20/
+POST http://localhost:8000/api/add/
 Content-Type: application/json
 
 {

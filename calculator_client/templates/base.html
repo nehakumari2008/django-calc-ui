@@ -4,14 +4,84 @@
     <meta charset="UTF-8">
     <title>Calculator</title>
 </head>
-<body>
-<h1>Calculator</h1>
-<a href="http://localhost:8000/add/">Addition</a><br>
-<a href="http://localhost:8000/sub/">Subtraction</a><br>
-<a href="http://localhost:8000/mul/">Multiplication</a><br>
-<a href="http://localhost:8000/div/">Divsion</a><br>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% block content %}
-{% endblock %}
+<style>
+    body {
+        margin: 0;
+        font-family: "Lato", sans-serif;
+    }
+
+    .sidebar {
+        margin: 0;
+        padding: 0;
+        width: 200px;
+        background-color: #f1f1f1;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .sidebar a {
+        display: block;
+        color: black;
+        padding: 16px;
+        text-decoration: none;
+    }
+
+    .sidebar a.active {
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    .sidebar a:hover:not(.active) {
+        background-color: #555;
+        color: white;
+    }
+
+    div.content {
+        margin-left: 200px;
+        padding: 1px 16px;
+        height: 1000px;
+    }
+
+    @media screen and (max-width: 700px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        .sidebar a {
+            float: left;
+        }
+
+        div.content {
+            margin-left: 0;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .sidebar a {
+            text-align: center;
+            float: none;
+        }
+    }
+</style>
+
+<body>
+
+<div class="sidebar">
+    <h1>Calculator</h1>
+    <a href="http://localhost:8000/add/">Addition</a><br>
+    <a href="http://localhost:8000/sub/">Subtraction</a><br>
+    <a href="http://localhost:8000/mul/">Multiplication</a><br>
+    <a href="http://localhost:8000/div/">Division</a><br>
+    <a href="http://localhost:8000/history/">History</a><br>
+</div>
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
 </body>
 </html>

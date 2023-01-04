@@ -4,6 +4,8 @@ from django.http import HttpResponse
 # from django.shortcuts import render
 #
 # Create your views here.
+from django.views.decorators.csrf import csrf_exempt
+
 from calculator.models import Operation
 
 from django.shortcuts import render
@@ -15,43 +17,67 @@ def index(request):
     return render(request, 'base.html')
 
 
-def addition(request, number1, number2):
-    sum = (number1 + number2)
-    processed_data = {"num1": number1, "num2": number2, "sum": sum}
-    json_object = json.dumps(processed_data, indent=4)
-    calculate = Operation(First_number=number1, Second_number=number2, operator='+', Result=sum)
-    calculate.save()
-    return HttpResponse(json_object)
-
-
-def subtraction(request, number1, number2):
-    diff = (number1 - number2)
-    processed_data = {"num1": number1, "num2": number2, "difference": diff}
-    json_object = json.dumps(processed_data, indent=4)
-    calculate = Operation(First_number=number1, Second_number=number2, operator='-', Result=diff)
-    calculate.save()
-    return HttpResponse(json_object)
-
-
-def multiplication(request, number2, number1):
-    mul = (number1 * number2)
-    processed_data = {"num1": number1, "num2": number2, "Multiplication": mul}
-    json_object = json.dumps(processed_data, indent=4)
-    calculate = Operation(First_number=number1, Second_number=number2, operator='*', Result=mul)
-    calculate.save()
-    return HttpResponse(json_object)
-
-
-def division(request, number1, number2):
-    try:
-        div = (number1 / number2)
-        processed_data = {"num1": number1, "num2": number2, "division": div}
+@csrf_exempt
+def addition(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        number1 = data['num1']
+        number2 = data['num2']
+        sum = (number1 + number2)
+        processed_data = {"num1": number1, "num2": number2, "sum": sum}
         json_object = json.dumps(processed_data, indent=4)
-        calculate = Operation(First_number=number1, Second_number=number2, operator='/', Result=div)
+        # Saving operation log in DB
+        calculate = Operation(first_number=number1, second_number=number2, operator='+', Result=sum)
         calculate.save()
         return HttpResponse(json_object)
-    except:
-        return HttpResponse("Cannot be divide by 0")
+
+
+@csrf_exempt
+def subtraction(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        number1 = data['num1']
+        number2 = data['num2']
+        diff = (number1 - number2)
+        processed_data = {"num1": number1, "num2": number2, "diff": diff}
+        json_object = json.dumps(processed_data, indent=4)
+        calculate = Operation(first_number=number1, second_number=number2, operator='-', Result=diff)
+        calculate.save()
+        return HttpResponse(json_object)
+
+
+@csrf_exempt
+def multiplication(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        number1 = data['num1']
+        number2 = data['num2']
+        mul = (number1 * number2)
+        processed_data = {"num1": number1, "num2": number2, "Multiplication": mul}
+        json_object = json.dumps(processed_data, indent=4)
+        calculate = Operation(first_number=number1, second_number=number2, operator='*', Result=mul)
+        calculate.save()
+        return HttpResponse(json_object)
+
+
+@csrf_exempt
+def division(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+            number1 = data['num1']
+            number2 = data['num2']
+            div = (number1 / number2)
+            processed_data = {"num1": number1, "num2": number2, "division": div}
+            json_object = json.dumps(processed_data, indent=4)
+            calculate = Operation(first_number=number1, second_number=number2, operator='/', Result=div)
+            calculate.save()
+            return HttpResponse(json_object)
+        except ZeroDivisionError:
+            return HttpResponse(ZeroDivisionError)
+
+
+
 
 # def addition(request):
 #     input1 = int(request.POST['num1'])
@@ -96,9 +122,7 @@ def division(request, number1, number2):
 #         return render(request, 'result.html', {"result": "Cannot be divide by 0"})
 #
 #
-# def history_view(request):
-#     show_history = Operation.objects.all().values()
-#     return render(request, 'history.html', {'show history': show_history})
+
 
 # def viewAdd(request):
 #     return render(request, 'add.html')
