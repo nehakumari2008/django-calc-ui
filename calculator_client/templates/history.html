@@ -2,29 +2,27 @@
 
 {% block content %}
 
-<h2>Show History</h2>
+    <h2>History</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th><td>First Number<td></th>
-      <th><td>Operator</td></th>
-      <th><td>Second number<td></th>
-      <th><td>Result</td></th>
-      <th><td>Created At<td></th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for calculation in Operations %}
-      <tr>
-        <td>{{ calculation.first_number }}</td>
-        <td>{{ calculation.operator }}</td>
-        <td>{{ calculation.second_number }}</td>
-        <td>{{ calculation.result }}</td>
-        <td>{{ calculation.created_at }}</td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+    <body>
+    <table>
+        <tr>
+            <th>First Number</th>
+            <th>Operator</th>
+            <th>Second Number</th>
+            <th>Result</th>
+            <th>Created At (IST)</th>
+        </tr>
+        {% for line in data %}
+        <tr>
+            <td>{{ line.first_number }}</td>
+            <td>{{ line.operator}}</td>
+            <td>{{ line.second_number }}</td>
+            <td>{{ line.Result }}</td>
+            <td>{{ line.Created_on }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </body>
 
 {% endblock %}
