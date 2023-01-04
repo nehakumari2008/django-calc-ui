@@ -11,8 +11,8 @@ $ pip install -r requirements.txt
 $ python manage.py runserver
 ```
 
-## APIs
-### /add, /subtract, /multiply, /divide
+## APIs /api
+### /api/add, /api/subtract, /api/multiply, /api/divide
 Request format: POST with following json format
 ```json
 {
@@ -29,5 +29,5 @@ Request format: POST with following json format
 }
 ```
 # UI
-/
-For main page
+/ For main page
+<img width="840" alt="Screenshot 2023-01-04 at 9 44 50 PM" src="https://user-images.githubusercontent.com/69853711/210600121-0da08748-529f-47b8-be62-9322d5f014e0.png">
