@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<body>
+    {% block content %}
+
+        <h1>Calculator</h1>
+
+        <h1>Addition</h1>
+    <form action="add" method="post">
+        {% csrf_token %}
+
+        Enter first number: <input type="number" name="num1"><br><br>
+        Enter second number: <input type="number" name="num2"><br><br>
+        <input type="submit">
+    </form>
+
+    <h1>Subtraction</h1>
+    <form action="sub" method="post">
+        {% csrf_token %}
+
+        Enter first number: <input type="number" name="num1"><br><br>
+        Enter second number: <input type="number" name="num2"><br><br>
+        <input type="submit">
+
+    </form>
+
+    <h1>Multiplication</h1>
+    <form action="multiply" method="post">
+        {% csrf_token %}
+
+        Enter first number: <input type="number" name="num1"><br><br>
+        Enter second number: <input type="number" name="num2"><br><br>
+        <input type="submit">
+
+    </form>
+
+    <h1>Division</h1>
+    <form action="div" method="post">
+        {% csrf_token %}
+
+        Enter first number: <input type="number" name="num1"><br><br>
+        Enter second number: <input type="number" name="num2"><br><br>
+        <input type="submit">
+
+    </form>
+
+{% endblock %}
+
+
+</body>
+</html>
+
+
+
+

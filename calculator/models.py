@@ -1,9 +1,13 @@
 from django.db import models
 
+
 # Create your models here.
+from django.utils import timezone
+
+
 class Operation(models.Model):
-    First_number = models.IntegerField()
-    Second_number = models.IntegerField()
-    operator = models.CharField(max_length = 1)
+    first_number = models.IntegerField(default=0)
+    Second_number = models.IntegerField(default=0)
+    operator = models.CharField(max_length=1)
     Result = models.IntegerField()
-    Created_on = models.DateField()
+    Created_on = models.DateTimeField(default=timezone.now())
