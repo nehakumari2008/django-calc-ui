@@ -1,19 +1,33 @@
-# Django Calci
-A simple API Based calculator written using Python and Django.
-## Endpoints
-> Add
-```http request
-/api/add/num1/num2
+Calculator with following functions:
+
+## How to use it
+
+```shell
+$ git clone https://github.com/nehakumari2008/django-calc-ui
+$ cd django-calc-ui
+$ python3 -m virtualenv env
+$ source env/bin/activate
+$ pip install -r requirements.txt
+$ python manage.py runserver
 ```
-> Subtract
-```http request
-/api/sub/num1/num2
+
+## APIs
+### /add, /subtract, /multiply, /divide
+Request format: POST with following json format
+```json
+{
+  "num1": 500,
+  "num2": 2100
+}
 ```
-> Multiply
-```http request
-/api/mul/num1/num2
+### Response format
+```json
+{
+  "num1": 500,
+  "num2": 2100,
+  "sum/diff/division/multiplication": 2600
+}
 ```
-> Division
-```http request
-/api/div/num1/num2
-```
+# UI
+/
+For main page
