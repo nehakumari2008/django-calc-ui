@@ -1,4 +1,3 @@
-Calculator with following functions:
 
 ## How to use it
 
