@@ -5,15 +5,24 @@ from django.shortcuts import render
 
 
 # Create your views here.
+from calculator.models import Operation
 
-def addition(request, number1, number2):
-    sum = (number1 + number2)
-    processed_data = {"num1": number1, "num2": number2, "Sum": sum}
-    json_object = json.dumps(processed_data, indent=4)
-    return HttpResponse(json_object)
+def index(request):
+    return render(request, 'input.html')
 
 
-def subtraction(request, number1, number2):
+def addition(request):
+    input1 = request.POST['First_number']
+    input2 = request.POST['Second_number']
+    res = input1 + input2
+    calculate = Operation(First_number=input1, Second_number=input2, operator= '+', Result=res)
+    calculate.save()
+
+    return render(request, 'result.html', {"result": res})
+
+
+
+def subtraction(request):
     diff = (number1 - number2)
     processed_data = {"num1": number1, "num2": number2, "difference": diff}
     json_object = json.dumps(processed_data, indent=4)
@@ -35,3 +44,8 @@ def division(request, number1, number2):
         return HttpResponse(json_object)
     except:
         return HttpResponse("Cannot be divide by 0")
+
+
+def history_view(request):
+    show_history = operation.objects.all()
+    return render(request, 'history.html', {'show history': show_history})

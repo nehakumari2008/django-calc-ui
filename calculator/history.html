@@ -1,0 +1,24 @@
+<h2>Show History</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>First Number</th>
+      <th>Operator</th>
+      <th>Second number</th>
+      <th>Result</th>
+      <th>Created At</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for calculation in calculations %}
+      <tr>
+        <td>{{ calculation.First_number }}</td>
+        <td>{{ calculation.operator }}</td>
+        <td>{{ calculation.Second_number }}</td>
+        <td>{{ calculation.result }}</td>
+        <td>{{ calculation.created_at }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
